@@ -22,7 +22,6 @@ var sum = function (array) {
   }
 
   let total = array[0];
-  console.log(total);
   total += sum(array.slice(1));
 
   return total;
@@ -30,7 +29,21 @@ var sum = function (array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function (array) {};
+// expect(arraySum([[1], [2, 3], [[4]], 5])).to.equal(15);
+var arraySum = function (array) {
+  let total = 0;
+  array.forEach(function (item, index) {
+    if (Array.isArray(item)) {
+      // console.log(`The total value: ${total} The item is ${item} `);
+      total += arraySum(item);
+    } else {
+      //console.log(`Inside the else: ${item}`);
+      total += item;
+    }
+  });
+
+  return total;
+};
 
 // 4. Check if a number is even.
 var isEven = function (n) {};
