@@ -61,12 +61,29 @@ var isEven = function (n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function (n) {
+  let indicator;
+  if (n < 0) {
+    // false indicate negative number
+    indicator = false;
+    n = Math.abs(n);
+  } else {
+    indicator = true;
+  }
+
   if (n === 0) {
     return n;
   } else if (n - 1 === 0) {
-    return n - 1;
+    if (indicator) {
+      return n - 1;
+    } else {
+      return -(n - 1);
+    }
   } else {
-    return n - 1 + sumBelow(n - 1);
+    if (indicator) {
+      return n - 1 + sumBelow(n - 1);
+    } else {
+      return -(n - 1 + sumBelow(n - 1));
+    }
   }
 };
 
